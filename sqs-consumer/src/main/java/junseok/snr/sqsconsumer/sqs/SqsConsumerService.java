@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class SqsService {
+public class SqsConsumerService {
     private static final String SEND_MESSAGE_QUEUE = "send-message-queue";
-    private static final String ORDER_001_QUEUE = "order-002-queue";
+    private static final String ORDER_001_QUEUE = "order-001-queue";
 
     @SqsListener(SEND_MESSAGE_QUEUE)
     public void listen(String message) {
