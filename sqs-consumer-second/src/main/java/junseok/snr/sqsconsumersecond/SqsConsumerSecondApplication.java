@@ -1,13 +1,13 @@
-package junseok.snr.sqsproducersecond;
+package junseok.snr.sqsconsumersecond;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SqsProducerSecondApplication {
+public class SqsConsumerSecondApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SqsProducerSecondApplication.class, args);
+		SpringApplication.run(SqsConsumerSecondApplication.class, args);
 	}
 
 }

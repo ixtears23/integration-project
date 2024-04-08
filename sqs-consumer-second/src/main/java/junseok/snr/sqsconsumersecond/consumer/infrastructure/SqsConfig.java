@@ -1,4 +1,4 @@
-package junseok.snr.sqsplayground.sqs;
+package junseok.snr.sqsconsumersecond.consumer.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

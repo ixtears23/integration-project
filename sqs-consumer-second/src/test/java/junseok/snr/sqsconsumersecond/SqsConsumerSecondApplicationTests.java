@@ -1,10 +1,10 @@
-package junseok.snr.sqsproducersecond;
+package junseok.snr.sqsconsumersecond;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SqsProducerSecondApplicationTests {
+class SqsConsumerSecondApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,4 @@
-package junseok.snr.sqsconsumer.sqs;
+package junseok.snr.sqsproducer.sqs.application;
 
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class SqsService {
+public class SqsProducerService {
     private static final String SEND_MESSAGE_QUEUE = "send-message-queue";
     private static final String ORDER_001_QUEUE = "order-002-queue";
 

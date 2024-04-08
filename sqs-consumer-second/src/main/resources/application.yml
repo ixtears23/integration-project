@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sqs-consumer-second
+
+server:
+  port: 5004
