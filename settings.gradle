@@ -1,0 +1,2 @@
+rootProject.name = 'MyProject'
+include 'redis-playground', 'sqs-playground'
