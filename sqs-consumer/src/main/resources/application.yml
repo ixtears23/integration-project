@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: sqs-consumer
+server:
+  port: 5002

@@ -1,0 +1,7 @@
+POST http://localhost:5001/messages
+Content-Type: application/json
+
+{
+  "queueName": "send-message-queue",
+  "message": "goodJob"
+}
