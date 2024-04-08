@@ -1,31 +1,22 @@
-package junseok.snr.sqsplayground.sqs;
+package junseok.snr.sns.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.sqs.SqsAsyncClient;
-import software.amazon.awssdk.services.sqs.SqsClient;
+import software.amazon.awssdk.services.sns.SnsClient;
 
 @Configuration
-public class SqsConfig {
+public class SnsConfig {
     private static final ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create("junseok");
 
     @Bean
-    public SqsAsyncClient sqsAsyncClient() {
-        return SqsAsyncClient.builder()
+    public SnsClient sqsClient() {
+        return SnsClient.builder()
                 .credentialsProvider(credentialsProvider)
                 .region(Region.AP_NORTHEAST_2)
                 .build();
     }
-
-    @Bean
-    public SqsClient sqsClient() {
-        return SqsClient.builder()
-                .credentialsProvider(credentialsProvider)
-                .region(Region.AP_NORTHEAST_2)
-                .build();
-    }
-
 
 }
+
