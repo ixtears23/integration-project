@@ -1,0 +1,8 @@
+### SNS 메세지 발송
+POST http://localhost:5003/notification
+Content-Type: application/json
+
+{
+  "subject": "도서 주문",
+  "message": "앞으로 가는 습관"
+}
