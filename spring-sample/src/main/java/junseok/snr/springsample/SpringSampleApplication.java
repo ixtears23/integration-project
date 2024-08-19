@@ -2,6 +2,7 @@ package junseok.snr.springsample;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,7 +17,13 @@ import org.springframework.context.event.EventListener;
 
 @Slf4j
 @SpringBootApplication
-public class SpringSampleApplication implements CommandLineRunner, InitializingBean, SmartLifecycle, ApplicationListener<ApplicationReadyEvent>, ApplicationRunner {
+public class SpringSampleApplication implements
+        CommandLineRunner,
+        InitializingBean,
+        SmartLifecycle,
+        ApplicationListener<ApplicationReadyEvent>,
+        ApplicationRunner,
+        DisposableBean {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringSampleApplication.class, args);
@@ -60,7 +67,7 @@ public class SpringSampleApplication implements CommandLineRunner, InitializingB
 
     @EventListener
     public void handleContextRefresh(ContextRefreshedEvent event) {
-        log.info("=== @EventListener");
+        log.info("=== @EventListener - handleContextRefresh...");
     }
 
     @Override
@@ -71,5 +78,10 @@ public class SpringSampleApplication implements CommandLineRunner, InitializingB
     @Override
     public void run(ApplicationArguments args) throws Exception {
         log.info("=== ApplicationRunner.run...");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        log.info("=== DisposableBean.destroy...");
     }
 }
