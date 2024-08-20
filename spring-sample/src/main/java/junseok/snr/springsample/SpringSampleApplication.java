@@ -14,7 +14,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Component;
 
+import java.util.concurrent.CompletableFuture;
+
+@EnableAsync
 @Slf4j
 @SpringBootApplication
 public class SpringSampleApplication implements
@@ -25,8 +31,32 @@ public class SpringSampleApplication implements
         ApplicationRunner,
         DisposableBean {
 
+    private final UseComponent useComponent;
+
+    public SpringSampleApplication(UseComponent useComponent) {
+        this.useComponent = useComponent;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(SpringSampleApplication.class, args);
+    }
+
+    @Component
+    @Async
+    public static class UseComponent {
+        public CompletableFuture<String> getNameSleep() {
+
+            try {
+                log.info("!!start!!");
+                Thread.sleep(100_000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            log.info("!!end!!");
+
+            return CompletableFuture.completedFuture("Wake Up!!!");
+        }
     }
 
     @Override
@@ -55,6 +85,7 @@ public class SpringSampleApplication implements
     @Override
     public void stop() {
         running = false;
+        useComponent.getNameSleep();
         log.info("=== SmartLifecycle.stop...");
 
     }
@@ -67,21 +98,25 @@ public class SpringSampleApplication implements
 
     @EventListener
     public void handleContextRefresh(ContextRefreshedEvent event) {
+        useComponent.getNameSleep();
         log.info("=== @EventListener - handleContextRefresh...");
     }
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        useComponent.getNameSleep();
         log.info("=== ApplicationListener.onApplicationEvent...");
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        useComponent.getNameSleep();
         log.info("=== ApplicationRunner.run...");
     }
 
     @Override
     public void destroy() throws Exception {
+        useComponent.getNameSleep();
         log.info("=== DisposableBean.destroy...");
     }
 }
